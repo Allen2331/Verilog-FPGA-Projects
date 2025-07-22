@@ -60,8 +60,8 @@ module instruction_decode(
                 //imm_out 
                 case(func3)
                     3'b000: ALU_control = 4'b0000;// Add immediate
-                    3'b111: ALU_control = 4'b0001;// AND immediate
-                    3'b110: ALU_control = 4'b0010;// OR immediate
+                    3'b111: ALU_control = 4'b0010;// AND immediate
+                    3'b110: ALU_control = 4'b0011;// OR immediate
                     3'b100: ALU_control = 4'b0100;// XOR immediate
                     default: ALU_control = 4'b1111; // Invalid
                 endcase
@@ -82,7 +82,11 @@ module instruction_decode(
                 mem_read = 1;
                 mem_write = 1;
                 alu_src = 1;
-                ALU_control = 4'b0000;             
+                case(func3)
+                    3'b000: ALU_control = 4'b0000; // LB
+                    3'b001: ALU_control = 4'b0001; // LH
+                    3'b010: ALU_control = 4'b0010; // LW
+                endcase             
             end
        endcase
     end
