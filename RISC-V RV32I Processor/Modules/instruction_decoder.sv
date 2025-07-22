@@ -23,7 +23,6 @@
 module instruction_decode(
     input logic [31:0] instruction_in,
     output logic [3:0] ALU_control,
-    output logic branch,
     output logic mem_write,
     output logic mem_read,
     output logic reg_write,
