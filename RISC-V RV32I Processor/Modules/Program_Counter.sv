@@ -23,18 +23,18 @@
 module Program_Counter(
     input logic clk, 
     input logic rst, 
-    input logic [31:0] instruction_in,
+    input logic [31:0] pc_in,
     input logic load,
     input logic increment,
-    output logic [31:0] instruction_out
+    output logic [31:0] pc_out
     );
     
     always_ff @(posedge clk or posedge rst) begin
         if (rst)
-            instruction_out <= 32'h00000000;
+            pc_out <= 32'h00000000;
         else if (load)
-            instruction_out <= instruction_in;
+            pc_out <= pc_in;
         else if (increment)
-            instruction_out <= instruction_out + 4;
+            pc_out <= pc_out + 4;
     end 
 endmodule
